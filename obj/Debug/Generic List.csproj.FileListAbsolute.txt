@@ -1,0 +1,7 @@
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\bin\Debug\Generic List.exe.config
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\bin\Debug\Generic List.exe
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\bin\Debug\Generic List.pdb
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\obj\Debug\Generic List.csprojAssemblyReference.cache
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\obj\Debug\Generic List.csproj.CoreCompileInputs.cache
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\obj\Debug\Generic List.exe
+D:\Study\LinkedIn Learning\5. Programming Foundations Data Structures\Generic List\obj\Debug\Generic List.pdb
