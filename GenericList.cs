@@ -183,24 +183,12 @@ namespace Generic_List
 
         public IEnumerator<T> GetEnumerator()
         {
-            var shrinkedArr = new T[Count];
-            for(int i = 0; i < Count; i++)
-            {
-                shrinkedArr[i] = arr[i];
-            }
-
-            return  shrinkedArr.Cast<T>().GetEnumerator();
+            return  arr.Cast<T>().Where((arr, val) => val < Count).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            var shrinkedArr = new T[Count];
-            for (int i = 0; i < Count; i++)
-            {
-                shrinkedArr[i] = arr[i];
-            }
-
-            return shrinkedArr.GetEnumerator();
+            return arr.Where((arr, val) => val < Count).GetEnumerator();
         }
     }
 }
