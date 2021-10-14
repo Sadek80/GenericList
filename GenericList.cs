@@ -121,7 +121,7 @@ namespace Generic_List
             int index = 0;
             foreach (var item in arr)
             {
-                if (index == Count - 1 || Count == 0)
+                if (index == Count  || Count == 0)
                     break;
 
                 if (item.Equals(value))
