@@ -41,11 +41,18 @@ namespace Generic_List
             Console.WriteLine("Check if value 100 is in the list: " + test.Contains(100));
             Console.WriteLine("Printing the list Count: " + test.Count);
 
+            Console.WriteLine("Printing All list using foreach and IEnumerator: ");
+            foreach (var item in test)
+            {
+                Console.WriteLine(item);
+            }
+
             Console.WriteLine("Clearing the List...");
             test.clear();
 
             Console.WriteLine("Capacity after clearing: " + test.Capacity);
             Console.WriteLine("Using count after clearing: " + test.Count);
+
 
             // Testing Exception
             Console.WriteLine(test[-1]);

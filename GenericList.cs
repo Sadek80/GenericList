@@ -1,5 +1,7 @@
 ﻿using System;
-
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Generic_List
 {
@@ -7,7 +9,7 @@ namespace Generic_List
     /// Generic Class that represents C# List<T> 
     /// </summary>
     /// <typeparam name="T"> A generic value</typeparam>
-    class GenericList<T> 
+    class GenericList<T> : IEnumerable<T>
     {
         // The basic Array to hold the elements
         T[] arr;
@@ -21,6 +23,9 @@ namespace Generic_List
         /// Gets or Sets the total number of elements that the structure can hold without resizing
         /// </summary>
         public int Capacity { get; set; }
+
+        public T Current => throw new NotImplementedException();
+
 
         /// <summary>
         /// Initialize a new instance that is empty and has the default capacity
@@ -174,6 +179,28 @@ namespace Generic_List
                     return true;
             }
             return false;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var shrinkedArr = new T[Count];
+            for(int i = 0; i < Count; i++)
+            {
+                shrinkedArr[i] = arr[i];
+            }
+
+            return shrinkedArr.Cast<T>().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            var shrinkedArr = new T[Count];
+            for (int i = 0; i < Count; i++)
+            {
+                shrinkedArr[i] = arr[i];
+            }
+
+            return shrinkedArr.Cast<T>().GetEnumerator();
         }
     }
 }
