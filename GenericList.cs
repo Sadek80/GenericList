@@ -9,10 +9,13 @@ namespace Generic_List
     /// Generic Class that represents C# List<T> 
     /// </summary>
     /// <typeparam name="T"> A generic value</typeparam>
-    class GenericList<T> : IEnumerable<T>
+    class GenericList<T> : IEnumerable, IEnumerator
     {
         // The basic Array to hold the elements
         T[] arr;
+
+        // The initial Position of the List, provided to enabling iteration through Foreach
+        private int positon = -1;
 
         /// <summary>
         /// Return number of element on the list
@@ -23,9 +26,6 @@ namespace Generic_List
         /// Gets or Sets the total number of elements that the structure can hold without resizing
         /// </summary>
         public int Capacity { get; set; }
-
-        public T Current => throw new NotImplementedException();
-
 
         /// <summary>
         /// Initialize a new instance that is empty and has the default capacity
@@ -181,14 +181,25 @@ namespace Generic_List
             return false;
         }
 
-        public IEnumerator<T> GetEnumerator()
+        // Enables the iteration through foreach
+        public object Current
         {
-            return  arr.Cast<T>().Where((arr, val) => val < Count).GetEnumerator();
+            get { return arr[positon]; }
+        }
+        public bool MoveNext()
+        {
+            positon++;
+            return (positon < Count);
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        public void Reset()
         {
-            return arr.Where((arr, val) => val < Count).GetEnumerator();
+            positon = -1;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
         }
     }
 }
