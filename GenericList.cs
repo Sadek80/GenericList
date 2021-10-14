@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Generic_List
 {
@@ -10,7 +7,7 @@ namespace Generic_List
     /// Generic Class that represents C# List<T> 
     /// </summary>
     /// <typeparam name="T"> A generic value</typeparam>
-    class GenericList<T> where T : new()
+    class GenericList<T> 
     {
         // The basic Array to hold the elements
         T[] arr;
@@ -78,7 +75,17 @@ namespace Generic_List
         /// </summary>
         private void ExpandSize()
         {
-            Array.Resize(ref arr, Capacity * 2);
+            // we can use Resize function either:
+            //Array.Resize(ref arr, Capacity * 2);
+
+            var temp = arr;
+            arr = new T[Capacity * 2];
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                arr[i] = temp[i];
+            }
+
             Capacity *= 2;
         }
 
@@ -91,10 +98,10 @@ namespace Generic_List
         {
             get
             {
-                if (index > Count || index < 0)
+                if (index >= Count || index < 0)
                     throw new ArgumentOutOfRangeException(nameof(index), index, "Index Out Of Range");
 
-                return arr[index];   
+                return arr[index];
             }
         }
 
@@ -102,17 +109,35 @@ namespace Generic_List
         /// Remove the element that has the specified value
         /// </summary>
         /// <param name="value">the element value</param>
-        public void Remove(T value)
+        /// <returns>returns True if the element successfully deleted, and False if not. Also returns false if the element is not found </returns>
+        public bool Remove(T value)
         {
-            try
+            bool flag = false;
+            int index = 0;
+            foreach (var item in arr)
             {
-                arr = arr.Where((arr) => !arr.Equals(value)).ToArray();
+                if (index == Count - 1 || Count == 0)
+                    break;
+
+                if (item.Equals(value))
+                {
+                    flag = true;
+                    continue;
+                }
+                else
+                {
+                    arr[index] = item;
+                    index++;
+                }
+
+            }
+            if (flag)
+            {
+                arr[Count - 1] = default(T);
                 Count--;
             }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }   
+
+            return flag;
         }
 
         /// <summary>
@@ -121,11 +146,10 @@ namespace Generic_List
         /// <param name="index">the index of the element</param>
         public void RemoveAt(int index)
         {
-            if (index > Count || index < 0)
+            if (index >= Count || index < 0)
                 throw new ArgumentOutOfRangeException(nameof(index), index, "Index Out Of Rnage");
 
-            arr = arr.Where((arr, val) => val != index).ToArray();
-            Count--;  
+            Remove(arr[index]);
         }
 
         /// <summary>
@@ -144,7 +168,7 @@ namespace Generic_List
         /// <returns>Returns True if the element is found, and flase if not </returns>
         public bool Contains(T value)
         {
-            foreach(var i in arr)
+            foreach (var i in arr)
             {
                 if (i.Equals(value))
                     return true;

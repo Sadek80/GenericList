@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Generic_List
 {
@@ -23,8 +22,8 @@ namespace Generic_List
             test.Add(90);
             test.Add(100);
             test.Add(110);
-            
-            // Basic list operations
+
+            //Basic list operations
             Console.WriteLine("Capacity after adding 9 values: " + test.Capacity);
             Console.WriteLine("Using count property: " + test.Count);
 
@@ -34,11 +33,13 @@ namespace Generic_List
             test.RemoveAt(4);
 
             Console.WriteLine("Printing value of index 4:" + test[4]);
+            Console.WriteLine("Printing the list Count: " + test.Count);
 
             Console.WriteLine("Removing value 100...");
             test.Remove(100);
 
-            Console.WriteLine("Check if value 100 is in the list: "+test.Contains(100));
+            Console.WriteLine("Check if value 100 is in the list: " + test.Contains(100));
+            Console.WriteLine("Printing the list Count: " + test.Count);
 
             Console.WriteLine("Clearing the List...");
             test.clear();
