@@ -189,7 +189,7 @@ namespace Generic_List
                 shrinkedArr[i] = arr[i];
             }
 
-            return shrinkedArr.Cast<T>().GetEnumerator();
+            return  shrinkedArr.Cast<T>().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -200,7 +200,7 @@ namespace Generic_List
                 shrinkedArr[i] = arr[i];
             }
 
-            return shrinkedArr.Cast<T>().GetEnumerator();
+            return shrinkedArr.GetEnumerator();
         }
     }
 }
